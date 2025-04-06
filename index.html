@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HopeeAcademy - Tu Academia de Inglés</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0088CC;
+            --primary-orange: #FF8800;
+            --dark-blue: #006699;
+            --light-orange: #FFB366;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+
+        .logo img {
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hero Section Update */
+        .hero {
+            padding-top: 80px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://img.freepik.com/free-vector/seamless-english-pattern-background-vector-educational-design_53876-140111.jpg');
+            background-size: 400px;
+            background-position: center;
+            opacity: 0.05;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .typing-text {
+            font-size: 2rem;
+            margin: 1.5rem 0;
+            min-height: 2em;
+            color: var(--primary-orange);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .typing-text {
+                font-size: 1.5rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Programs Section */
+        .programs {
+            padding: 5rem 0;
+            background-color: var(--light-bg);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .level-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .level-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-orange);
+        }
+
+        .level-card h3 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .level-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .level-card ul li {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 5px;
+            background: var(--light-bg);
+        }
+
+        /* Kids Section */
+        .kids-section {
+            background: linear-gradient(45deg, var(--primary-orange) 0%, var(--light-orange) 100%);
+            padding: 5rem 0;
+            color: white;
+        }
+
+        .kids-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .kids-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .kids-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .kids-content ul li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .kids-content ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: white;
+            font-weight: bold;
+        }
+
+        .kids-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .kids-image img:hover {
+            transform: rotate(2deg) scale(1.02);
+        }
+
+        /* Add styles for offer badge */
+        .kids-offer {
+            position: relative;
+            background: var(--primary-orange);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255,136,0,0.3);
+        }
+
+        .kids-offer::before {
+            content: 'OFERTA';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: white;
+            color: var(--primary-orange);
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .offer-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .offer-price .original {
+            font-size: 1.5rem;
+            text-decoration: line-through;
+            opacity: 0.7;
+            margin-right: 1rem;
+        }
+
+        .offer-details {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .offer-timer {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .timer-box {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 70px;
+        }
+
+        .timer-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .timer-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* About Us Section */
+        .about-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-card i {
+            font-size: 2.5rem;
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-orange);
+            transform: translateY(-3px);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-card i {
+            font-size: 1.5rem;
+            color: var(--primary-orange);
+        }
+
+        .contact-card a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--primary-orange);
+        }
+
+        .team-avatars {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-orange);
+            padding: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.1);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--dark-bg);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-orange);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary-orange);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-orange);
+        }
+
+        .button:hover {
+            background-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,136,0,0.3);
+        }
+
+        /* Footer styles update */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-orange);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-orange);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-contact {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-contact i {
+            color: var(--primary-orange);
+        }
+
+        .footer-logo img {
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                gap: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .level-card, .kids-content, .hero-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .kids-content {
+                grid-template-columns: 1fr;
+            }
+
+            .level-card {
+                margin: 1rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="assests/logo.png" alt="HopeeAcademy Logo">
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>¡Descubre el Inglés en HopeeAcademy!</h1>
+                <div class="typing-text" id="typing-text"></div>
+                <p>Donde el aprendizaje se convierte en una aventura emocionante. Únete a nuestra comunidad de estudiantes exitosos.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">1000+</div>
+                        <p>Estudiantes Graduados</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">95%</div>
+                        <p>Tasa de Aprobación</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <p>Años de Experiencia</p>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#contact" class="button">¡Comienza Tu Viaje!</a>
+                    <a href="#about" class="button secondary">Conócenos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="programs" id="programs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Programas de Inglés</h2>
+                <p>Encuentra el nivel perfecto para tu aprendizaje</p>
+            </div>
+            <div class="levels-grid">
+                <div class="level-card">
+                    <h3>Nivel A1</h3>
+                    <p>Principiante</p>
+                    <ul>
+                        <li>Vocabulario básico</li>
+                        <li>Gramática fundamental</li>
+                        <li>Conversación inicial</li>
+                        <li>Ejercicios prácticos</li>
+                    </ul>
+                </div>
+                <div class="level-card">
+                    <h3>Nivel A2</h3>
+                    <p>Elemental</p>
+                    <ul>
+                        <li>Expresiones cotidianas</li>
+                        <li>Gramática intermedia</li>
+                        <li>Práctica conversacional</li>
+                        <li>Situaciones reales</li>
+                    </ul>
+                </div>
+                <div class="level-card">
+                    <h3>Nivel B1</h3>
+                    <p>Intermedio</p>
+                    <ul>
+                        <li>Fluidez verbal</li>
+                        <li>Gramática avanzada</li>
+                        <li>Debates y discusiones</li>
+                        <li>Proyectos prácticos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="kids-section" id="kids">
+        <div class="container">
+            <div class="kids-content">
+                <div>
+                    <h2>¡Programa Especial para Niños!</h2>
+                    <p>Un mundo de diversión mientras aprenden inglés</p>
+                    <ul>
+                        <li>Clases dinámicas e interactivas</li>
+                        <li>Juegos y actividades educativas</li>
+                        <li>Profesores especializados en educación infantil</li>
+                        <li>Grupos reducidos y personalizados</li>
+                        <li>Material didáctico exclusivo</li>
+                    </ul>
+
+                    <div class="kids-offer">
+                        <h3>¡Oferta Especial de Inscripción!</h3>
+                        <div class="offer-details">Programa Completo para Niños</div>
+                        <div class="offer-price">
+                            <span class="original">$299</span>
+                            <span>$199</span>
+                        </div>
+                        <p>¡Incluye material didáctico y membresía al club de conversación!</p>
+                        
+                        <div class="offer-timer">
+                            <div class="timer-box">
+                                <div class="timer-number" id="days">05</div>
+                                <div class="timer-label">Días</div>
+                            </div>
+                            <div class="timer-box">
+                                <div class="timer-number" id="hours">23</div>
+                                <div class="timer-label">Horas</div>
+                            </div>
+                            <div class="timer-box">
+                                <div class="timer-number" id="minutes">45</div>
+                                <div class="timer-label">Minutos</div>
+                            </div>
+                        </div>
+
+                        <a href="#contact" class="button">¡Aprovecha esta Oferta!</a>
+                    </div>
+                </div>
+                <div class="kids-image">
+                    <img src="https://img.freepik.com/free-vector/kids-online-lessons-concept_23-2148520727.jpg" alt="Niños aprendiendo inglés de forma divertida">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre Nosotros</h2>
+                <p>Conoce la excelencia académica de HopeeAcademy</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2>Nuestra Misión</h2>
+                    <p>En HopeeAcademy, nos dedicamos a transformar vidas a través del aprendizaje del inglés. Nuestro enfoque innovador y personalizado garantiza que cada estudiante alcance su máximo potencial.</p>
+                    
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <i class="fas fa-star"></i>
+                            <h3>Excelencia</h3>
+                            <p>Compromiso con la calidad educativa</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-users"></i>
+                            <h3>Comunidad</h3>
+                            <p>Ambiente acogedor y colaborativo</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-rocket"></i>
+                            <h3>Innovación</h3>
+                            <p>Métodos modernos de enseñanza</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://img.freepik.com/free-vector/english-teacher-concept-illustration_114360-7477.jpg" alt="Enseñanza de inglés">
+                </div>
+            </div>
+
+            <!-- <div class="team-avatars">
+                <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=teacher1&backgroundColor=65c9ff" alt="Profesor" class="avatar">
+                <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=teacher2&backgroundColor=ff8800" alt="Profesor" class="avatar">
+                <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=teacher3&backgroundColor=65c9ff" alt="Profesor" class="avatar">
+                <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=teacher4&backgroundColor=ff8800" alt="Profesor" class="avatar">
+            </div> -->
+        </div>
+    </section>
+
+    <!-- <section class="cta" id="contact">
+        <div class="container">
+            <h2>¡Tu Futuro Comienza Aquí!</h2>
+            <p>Únete a nuestra comunidad de estudiantes y alcanza tus metas</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>Correo</h3>
+                        <a href="mailto:contact@hopeeacademy.com">contact@hopeeacademy.com</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <h3>WhatsApp</h3>
+                        <a href="https://wa.me/593991861101" target="_blank">+593 99 186 1101</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://instagram.com/hopeeacademy" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://facebook.com/hopeeacademy" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://wa.me/593991861101" target="_blank" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </section> -->
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assests/logo.png" alt="HopeeAcademy Logo">
+                    </div>
+                    <p>HopeeAcademy te conecta al mundo, abriendo puertas a mejores oportunidades laborales y experiencias internacionales.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/hopeeacademy" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/hopeeacademy" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/593991861101" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Nuestros Cursos</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cursos Intensivos</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cursos Regulares</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Programa para Niños</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Clases Privadas</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Preparación TOEFL</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Información de Contacto</h3>
+                    <div class="footer-contact">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:contact@hopeeacademy.com">contact@hopeeacademy.com</a>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/593991861101">+593 99 186 1101</a>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="fas fa-clock"></i>
+                        <span>Lun - Vie: 8:00 AM - 8:00 PM</span>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="fas fa-clock"></i>
+                        <span>Sáb: 9:00 AM - 1:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> Sobre Nosotros</a></li>
+                        <li><a href="#programs"><i class="fas fa-chevron-right"></i> Programas</a></li>
+                        <li><a href="#kids"><i class="fas fa-chevron-right"></i> Programa Niños</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 HopeeAcademy. Todos los derechos reservados | Desarrollado por el Dept. de Marketing</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script>
+    // Typing effect
+    const texts = [
+        "Abre las puertas al mundo ",
+        "Alcanza tus metas profesionales ",
+        "Aprende con los mejores profesores ",
+        "Metodología probada y efectiva "
+    ];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingElement = document.getElementById('typing-text');
+
+    function type() {
+        const currentText = texts[textIndex];
+        if (isDeleting) {
+            typingElement.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typingElement.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        if (!isDeleting && charIndex === currentText.length) {
+            isDeleting = true;
+            setTimeout(type, 2000);
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % texts.length;
+            setTimeout(type, 500);
+        } else {
+            setTimeout(type, isDeleting ? 50 : 100);
+        }
+    }
+
+    // Start typing effect
+    type();
+
+    // Countdown Timer
+    function updateTimer() {
+        const now = new Date();
+        const target = new Date(now);
+        target.setDate(target.getDate() + 5); // 5 days from now
+        target.setHours(23, 59, 59);
+
+        const diff = target - now;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    }
+
+    // Update timer every minute
+    updateTimer();
+    setInterval(updateTimer, 60000);
+</script>
+</html>
